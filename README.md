@@ -24,7 +24,12 @@ All the server and workers run into a docker container, in the workers we user d
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
 
 
-In this diagram, we are focusing the events architecture to create a async flow using events.
+In this diagram, we are focusing the events architecture to create a async flow using events, I'm using the pub/sub **channels** as event queue.
+
+Channels list:
+- SMS
+- SMS_OK
+- SMS_FAIL
 
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis-events.png?raw=true" align="center" />
 
