@@ -22,6 +22,7 @@ There are two differents blocks.
 All the server and workers run into a docker container, in the workers we user docker-compouse in scale mode.
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
 
+
 In this diagram, we are focus the events architecture to create a async flow using events.
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
 
