@@ -1,2 +1,2 @@
-# Redis_PUBSUB_node
+ # SMS distributed services using redis PUB/SUBE
 A complete example of event sourcing using redis pub/sub features with docker and nodejs + Typescript. In this situation we will create a SMS send distributed service.
