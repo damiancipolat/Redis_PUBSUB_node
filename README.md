@@ -15,6 +15,5 @@ Our stack will be:
 
 ## Architecture:
 There are two differents blocks.
-- **Api rest**:Receive sms message send request and pubslish into the redis queue.
-
-- **Workers**:Differents instances of a same nodejs docker image running in parralel.
+- **Api rest**: Receive sms message send request and pubslish into the redis queue.
+- **Workers**: Differents instances of a same nodejs docker image running in parralel, in this part we are working with mocked rest services rest services.
