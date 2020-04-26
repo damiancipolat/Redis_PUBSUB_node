@@ -30,6 +30,5 @@ In this diagram, we are focusing the events architecture to create a async flow 
 - **SMS_OK**: Is published when the sms was sent succefull.
 - **SMS_FAIL**: Is published when the provider fail sending the sms, we can use this to make retries.
 
-Events diagram:
-
+### Events diagram:
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis-events.png?raw=true" align="center" />
