@@ -1,0 +1,35 @@
+version: "2"
+services:
+  api:
+    container_name: api
+    restart: always
+    build: ./api
+    ports:
+      - "8000:8000"
+    links:
+      - redis
+    networks:
+      - network
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - network
+  workers:
+    container_name: workers
+    restart: always
+    build: ./workers
+    ports:
+      - "8000-9000:5000"
+    links:
+      - redis
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
+
+#docker-compose up --scale redis-master=3 -d
