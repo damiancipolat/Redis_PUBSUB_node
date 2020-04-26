@@ -32,3 +32,10 @@ In this diagram, we are focusing the events architecture to create a async flow 
 
 ### Events diagram:
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis-events.png?raw=true" align="center" />
+
+## Environment:
+To run the projec follow the next commands.
+
+- Api server: **port 8000**.
+- Redir: **port 6379**.
+- Workers: **port range 8000-9000".
