@@ -17,3 +17,6 @@ Our stack will be:
 There are two differents blocks.
 - **Api rest**: Receive sms message send request and pubslish into the redis queue.
 - **Workers**: Differents instances of a same nodejs docker image running in parralel, in this part we are working with mocked rest services rest services.
+
+### Pub - sub design:
+<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" width="150px" align="left" />
