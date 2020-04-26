@@ -1,4 +1,6 @@
- # SMS distributed services using redis PUB/SUB
+<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/logo.png?raw=true" width="150px" align="right" />
+
+# SMS distributed services using redis PUB/SUB
 A complete example of event sourcing using redis pub/sub features with docker and nodejs + Typescript. In this situation we will create a SMS send distributed service.
 
 ## Stack:
