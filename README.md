@@ -40,7 +40,9 @@ To run the projec follow the next commands.
 #To run, using a scaling group as a daemon.
 docker-compose up --scale workers=3 -d
 ```
-
 - Api server: **port 8000**.
 - Redir: **port 6379**.
 - Workers: **port range 8000-9000**.
+
+##TODO:
+add code base
