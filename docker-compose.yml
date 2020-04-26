@@ -18,7 +18,6 @@ services:
     networks:
       - network
   workers:
-    container_name: workers
     restart: always
     build: ./workers
     ports:
@@ -31,5 +30,3 @@ services:
 networks:
   network:
     driver: bridge
-
-#docker-compose up --scale redis-master=3 -d
