@@ -17,3 +17,12 @@ Our stack will be:
 There are two differents blocks.
 - **Api rest**: Receive sms message send request and pubslish into the redis queue.
 - **Workers**: Differents instances of a same nodejs docker image running in parralel, in this part we are working with mocked rest services rest services.
+
+### Pub - sub design:
+All the server and workers run into a docker container, in the workers we user docker-compouse in scale mode.
+<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
+
+
+In this diagram, we are focus the events architecture to create a async flow using events.
+<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
+
