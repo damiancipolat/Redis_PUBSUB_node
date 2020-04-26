@@ -20,9 +20,14 @@ There are two differents blocks.
 
 ### Pub - sub design:
 All the server and workers run into a docker container, in the workers we user docker-compouse in scale mode.
+
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
 
+In this diagram, we are focusing the events architecture to create a async flow using events, I'm using the pub/sub **channels** as event queue.
 
-In this diagram, we are focus the events architecture to create a async flow using events.
-<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis.png?raw=true" align="center" />
+### Channels:
+- **SMS**: Used to publish a sms to be sent.
+- **SMS_OK**: Is published when the sms was sent succefull.
+- **SMS_FAIL**: Is published when the provider fail sending the sms, we can use this to make retries.
 
+<img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis-events.png?raw=true" align="center" />
