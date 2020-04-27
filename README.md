@@ -30,4 +30,19 @@ In this diagram, we are focusing the events architecture to create a async flow 
 - **SMS_OK**: Is published when the sms was sent succefull.
 - **SMS_FAIL**: Is published when the provider fail sending the sms, we can use this to make retries.
 
+### Events diagram:
 <img src="https://github.com/damiancipolat/Redis_PUBSUB_node/blob/master/doc/pub-sub-redis-events.png?raw=true" align="center" />
+
+## Environment:
+To run the projec follow the next commands.
+
+```sh
+#To run, using a scaling group as a daemon.
+docker-compose up --scale workers=3 -d
+```
+- Api server: **port 8000**.
+- Redir: **port 6379**.
+- Workers: **port range 8000-9000**.
+
+##TODO:
+add code base
