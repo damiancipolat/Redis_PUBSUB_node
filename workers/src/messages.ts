@@ -46,8 +46,10 @@ const newSMS = async (pub:any, client:any, channel:string, message:string) => {
   } catch(err){
 
     //Detect sms sent exception.
-    if (err&&err.status&&err.status==='SENT_ERROR')
+    if (err&&err.status&&err.status==='SENT_ERROR'){
+      await updateOrder(client, err.uuid,'FAIL');
       publishFail(client,err.uuid);
+    }
 
   }
 
