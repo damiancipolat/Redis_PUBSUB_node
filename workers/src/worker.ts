@@ -5,15 +5,20 @@ const {
   onMessage
 } = require('./events');
 
+//Define connections.
+let subscriber:any;
+let publisher:any;
+let client:any;
+
 try {  
 
   //We need to exclusive connection to use pub/sub.
-  const subscriber = redis.createClient();
-  const publisher  = redis.createClient();
+  subscriber = redis.createClient();
+  publisher  = redis.createClient();
 
   //This extra connection is to make updates.
-  const client = redis.createClient();
-  
+  client = redis.createClient();  
+
   //Define events..
   subscriber.on("subscribe", onSubscribe);
   subscriber.on("message", (channel:string,message:string)=>onMessage(publisher, client, channel, message));
@@ -25,4 +30,11 @@ try {
 
 } catch(err){
   console.log('Error received', err);
+
+  //On a critical error finish connections.
+  subscriber.unsubscribe();
+  subscriber.quit();
+  publisher.quit();
+  client.quit();
+
 }
