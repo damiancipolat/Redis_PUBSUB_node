@@ -37,22 +37,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sendSMS = require('./service/sms').sendSMS;
+var _a = require('./service/orders'), updateOrder = _a.updateOrder, publishSuccess = _a.publishSuccess, publishFail = _a.publishFail;
 var decodeMessage = require('./lib').decodeMessage;
 //Subscribe events.
-var newSMS = function (channel, message) { return __awaiter(void 0, void 0, void 0, function () {
-    var msg, result;
+var newSMS = function (pub, client, channel, message) { return __awaiter(void 0, void 0, void 0, function () {
+    var msg, uuid, number, text, result, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 3, , 4]);
                 msg = decodeMessage(message);
                 //Validate the message.
-                if (!(msg != null && msg.id && msg.number && msg.text))
+                if (!(msg != null && msg.uuid && msg.number && msg.text))
                     console.log('Bad message format:', message);
-                return [4 /*yield*/, sendSMS(msg.number, msg.text)];
+                uuid = msg.uuid, number = msg.number, text = msg.text;
+                return [4 /*yield*/, sendSMS(uuid, number, text)];
             case 1:
                 result = _a.sent();
                 console.log('SMS send result:', result);
-                return [2 /*return*/];
+                //Record in cache the operation status.  
+                return [4 /*yield*/, updateOrder(client, uuid, 'OK')];
+            case 2:
+                //Record in cache the operation status.  
+                _a.sent();
+                //Publish in a queue.
+                publishSuccess(client, uuid);
+                return [3 /*break*/, 4];
+            case 3:
+                err_1 = _a.sent();
+                //Detect sms sent exception.
+                if (err_1 && err_1.status && err_1.status === 'SENT_ERROR')
+                    publishFail(client, err_1.uuid);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

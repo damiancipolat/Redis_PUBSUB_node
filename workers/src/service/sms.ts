@@ -11,7 +11,7 @@ const {
 } = config.get('services');
 
 //Send a sms.
-const sendSMS = async (phoneNumber:string, text:string)=>{
+const sendSMS = async (uuid:string, phoneNumber:string, text:string)=>{
 
   console.log('SMS send to:',phoneNumber);
 
@@ -20,7 +20,7 @@ const sendSMS = async (phoneNumber:string, text:string)=>{
 
   //If the request receive a fail throw an exception.
   if (result.status!=200)
-    throw new Error('Error sending sms');
+    throw {status:"SENT_ERROR", phoneNumber, uuid};
 
   //Fetch response.
   return await result.json();

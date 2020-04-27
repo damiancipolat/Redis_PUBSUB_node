@@ -14,7 +14,7 @@ const onSubscribe = (channel:string, count:number)=>{
   console.log('Subscribed in channel:',channel);
 };
 
-const onMessage = async (channel:string, message:string)=>{
+const onMessage = async (pub:any, client:any, channel:string, message:string)=>{
 
   console.log('MessageLog: channel',channel,'message',message);
 
@@ -24,7 +24,7 @@ const onMessage = async (channel:string, message:string)=>{
   if (!fn)
     console.log('Message received in a unknow channel',channel);
   else  
-    await fn(channel, message);
+    await fn(pub, client, channel, message);
 
 }
 

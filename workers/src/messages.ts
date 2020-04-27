@@ -1,5 +1,3 @@
-import { decode } from "punycode";
-
 //To fix TS-global-scope error.
 export {};
 
@@ -8,26 +6,50 @@ const {
 } = require('./service/sms');
 
 const {
+  updateOrder,
+  publishSuccess,
+  publishFail
+} = require('./service/orders');
+
+const {
   decodeMessage
 } = require('./lib');
 
 //Subscribe events.
-const newSMS = async (channel:string, message:string) => {
+const newSMS = async (pub:any, client:any, channel:string, message:string) => {
   
-  //Decode the message.
-  const msg = decodeMessage(message);
-  
-  //Validate the message.
-  if (!(msg!=null&&msg.id&&msg.number&&msg.text))
-      console.log('Bad message format:',message);
+  try{
 
-  //Send request.
-  const result = await sendSMS(msg.number,msg.text);
+    //Decode the message.
+    const msg = decodeMessage(message);
+    
+    //Validate the message.
+    if (!(msg!=null&&msg.uuid&&msg.number&&msg.text))
+        console.log('Bad message format:',message);
 
-  //Record in cache the operation status.
-  console.log('SMS send result:',result);
+    const {
+      uuid,
+      number,
+      text
+    } = msg;
 
-  //recordStatus(msg.id,true);
+    //Send request.
+    const result = await sendSMS(uuid, number, text);
+    console.log('SMS send result:',result);
+
+    //Record in cache the operation status.  
+    await updateOrder(client, uuid,'OK');
+    
+    //Publish in a queue.
+    publishSuccess(client, uuid);
+
+  } catch(err){
+
+    //Detect sms sent exception.
+    if (err&&err.status&&err.status==='SENT_ERROR')
+      publishFail(client,err.uuid);
+
+  }
 
 };
   

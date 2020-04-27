@@ -41,7 +41,7 @@ var fetch = require('node-fetch');
 //Get the urls.
 var _a = config.get('services'), sms_ok = _a.sms_ok, sms_fail = _a.sms_fail;
 //Send a sms.
-var sendSMS = function (phoneNumber, text) { return __awaiter(void 0, void 0, void 0, function () {
+var sendSMS = function (uuid, phoneNumber, text) { return __awaiter(void 0, void 0, void 0, function () {
     var result;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -52,7 +52,7 @@ var sendSMS = function (phoneNumber, text) { return __awaiter(void 0, void 0, vo
                 result = _a.sent();
                 //If the request receive a fail throw an exception.
                 if (result.status != 200)
-                    throw new Error('Error sending sms');
+                    throw { status: "SENT_ERROR", phoneNumber: phoneNumber, uuid: uuid };
                 return [4 /*yield*/, result.json()];
             case 2: 
             //Fetch response.

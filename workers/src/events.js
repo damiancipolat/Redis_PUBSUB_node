@@ -42,7 +42,7 @@ var bindings = require('./channels').bindings;
 var onSubscribe = function (channel, count) {
     console.log('Subscribed in channel:', channel);
 };
-var onMessage = function (channel, message) { return __awaiter(void 0, void 0, void 0, function () {
+var onMessage = function (pub, client, channel, message) { return __awaiter(void 0, void 0, void 0, function () {
     var fn;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -52,7 +52,7 @@ var onMessage = function (channel, message) { return __awaiter(void 0, void 0, v
                 if (!!fn) return [3 /*break*/, 1];
                 console.log('Message received in a unknow channel', channel);
                 return [3 /*break*/, 3];
-            case 1: return [4 /*yield*/, fn(channel, message)];
+            case 1: return [4 /*yield*/, fn(pub, client, channel, message)];
             case 2:
                 _a.sent();
                 _a.label = 3;
