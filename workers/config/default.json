@@ -1,0 +1,11 @@
+{
+  "server":{
+      "ip":"",
+      "port":8080
+  },
+  "services":{
+      "sms_ok":"http://www.mocky.io/v2/5ea63e79320000841eac28f4",
+      "sms_fail":"http://www.mocky.io/v2/5ea63e693200005b00ac28f3",      
+      "payment":""
+  }
+}

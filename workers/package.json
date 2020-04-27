@@ -2,13 +2,15 @@
   "name": "workers",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/worker.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^13.13.4",
+    "config": "^3.3.1",
+    "node-fetch": "^2.6.0",
     "redis": "^3.0.2",
     "typescript": "^3.8.3"
   }
