@@ -45,7 +45,7 @@ var newSMS = function (pub, client, channel, message) { return __awaiter(void 0,
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 3, , 6]);
                 msg = decodeMessage(message);
                 //Validate the message.
                 if (!(msg != null && msg.uuid && msg.number && msg.text))
@@ -62,14 +62,17 @@ var newSMS = function (pub, client, channel, message) { return __awaiter(void 0,
                 _a.sent();
                 //Publish in a queue.
                 publishSuccess(client, uuid);
-                return [3 /*break*/, 4];
+                return [3 /*break*/, 6];
             case 3:
                 err_1 = _a.sent();
-                //Detect sms sent exception.
-                if (err_1 && err_1.status && err_1.status === 'SENT_ERROR')
-                    publishFail(client, err_1.uuid);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                if (!(err_1 && err_1.status && err_1.status === 'SENT_ERROR')) return [3 /*break*/, 5];
+                return [4 /*yield*/, updateOrder(client, err_1.uuid, 'FAIL')];
+            case 4:
+                _a.sent();
+                publishFail(client, err_1.uuid);
+                _a.label = 5;
+            case 5: return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
         }
     });
 }); };

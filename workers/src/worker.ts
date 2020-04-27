@@ -13,11 +13,21 @@ let client:any;
 try {  
 
   //We need to exclusive connection to use pub/sub.
-  subscriber = redis.createClient();
-  publisher  = redis.createClient();
+  subscriber = redis.createClient({
+    host: 'redis-server',
+    port: 6379
+  });
+
+  publisher  = redis.createClient({
+    host: 'redis-server',
+    port: 6379
+  });
 
   //This extra connection is to make updates.
-  client = redis.createClient();  
+  client = redis.createClient({
+    host: 'redis-server',
+    port: 6379
+  });  
 
   //Define events..
   subscriber.on("subscribe", onSubscribe);

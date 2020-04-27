@@ -1,32 +1,23 @@
-version: "2"
+version: "3"
 services:
-  api:
-    container_name: api
-    restart: always
-    build: ./api
-    ports:
-      - "8000:8000"
-    links:
-      - redis
-    networks:
-      - network
-  redis:
-    container_name: redis
+  redis-server:
     image: redis
     ports:
-      - "6379:6379"
-    networks:
-      - network
+     - "6379:6379"
+  api:
+    container_name: api
+    build: 
+      dockerfile: dockerfile
+      context: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis-server
   workers:
-    restart: always
-    build: ./workers
+    build: 
+      dockerfile: dockerfile
+      context: ./workers
     ports:
       - "8000-9000:5000"
-    links:
-      - redis
-    networks:
-      - network
-
-networks:
-  network:
-    driver: bridge
+    depends_on:
+      - redis-server
