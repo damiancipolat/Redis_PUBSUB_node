@@ -1,5 +1,8 @@
-const hello = ()=>{
-    console.log("Hello mock");
+export {};
+
+//Mocked endpoint,
+const hello = (port:string)=>{
+    console.log("Hello sms publisher server running in port:",port);
 };
 
 //Add CORS to middleware.
