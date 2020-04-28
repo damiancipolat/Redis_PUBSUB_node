@@ -67,6 +67,9 @@ Reponse, the response have this format is an asyncronic process, so you have to 
 
 ### **Get sms send status by uuid**:
 ```sh
+curl --location --request GET 'http://127.0.0.1:8000/key/{uuid}'
+
+#Example:
 curl --location --request GET 'http://127.0.0.1:8000/key/sms-1588048730269'
 ```
 
