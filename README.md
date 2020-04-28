@@ -44,5 +44,27 @@ docker-compose up --scale workers=3 -d
 - Redir: **port 6379**.
 - Workers: **port range 8000-9000**.
 
-## TODO:
-add api code base
+## Request:
+
+**Send a SMS**:
+```sh
+curl --location --request POST 'http://127.0.0.1:8000/sms' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"number":"+541166587382",
+	"text":"hello damian"
+}'```
+
+Reponse, the response have this format is an asyncronic process, so you have to make polling to detected when success.
+```sh
+{
+    "uuid": "sms-1588048730269",
+    "number": "+541166587382",
+    "text": "hello damian"
+}```
+
+**Get sms send status by uuid**:
+```sh
+curl --location --request GET 'http://127.0.0.1:8000/key/sms-1588048730269'
+```
+
