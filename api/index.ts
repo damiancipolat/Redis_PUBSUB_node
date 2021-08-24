@@ -12,13 +12,13 @@ const PORT:string = process.env.PORT||"8000";
 
 //Create redis connection for read.
 const client = redis.createClient({
-  host: '127.0.0.1',
+  host: 'redis-server',
   port: 6379
 });
 
 //Create redis connection for publish.
 const publisher = redis.createClient({
-  host: '127.0.0.1',
+  host: 'redis-server',
   port: 6379
 });
 
