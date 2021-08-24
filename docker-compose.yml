@@ -17,7 +17,7 @@ services:
     build: 
       dockerfile: dockerfile
       context: ./workers
-    ports:
-      - "8000-9000:5000"
+    # ports:
+    #   - "18000-19000:5000"
     depends_on:
       - redis-server
